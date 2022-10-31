@@ -1,9 +1,16 @@
 <?php 
-  include('koneksi.php');
+  include 'koneksi.php';
   $id = $_GET['id'];
-  $query = "SELECT * FROM tbl_siswa WHERE id_siswa = $id LIMIT 1";
+  $query = "SELECT * FROM tbl_siswa WHERE id_siswa = '$id' ";
   $result = mysqli_query($koneksi, $query);
   $row = mysqli_fetch_array($result);
+?>
+
+<?php 
+	session_start();
+	if($_SESSION['status']!="login"){
+		header("location:login.php?pesan=belum_login");
+	}
 ?>
 
 <!DOCTYPE html>
